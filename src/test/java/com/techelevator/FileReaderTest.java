@@ -12,7 +12,7 @@ public class FileReaderTest {
 	@Test
 	public void test_inventory() {
 		VendingMachine testMachine = testReader.fillInventory();
-		Product testProduct = new Product("A1","Potato Crisps",3.05,"Chip");
+		Product testProduct = new Product("A1","Potato Crisps",3.05,"Chip",5);
 		Assert.assertTrue(testMachine.getProduct(0).getPrice() == testProduct.getPrice());
 	}
 	
