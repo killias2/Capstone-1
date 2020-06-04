@@ -16,29 +16,33 @@ public class FileReader {
 				String line = reader.nextLine();
 				String[] productArray = line.split("\\|");
 				
-				if (productArray[3].equals("Chip")) {
-					Chips newChips = new Chips(productArray[0],productArray[1],
-							Double.parseDouble(productArray[2]),productArray[3], 5);
-					initVendingMachine.add(newChips);
-					
-				}
-				if (productArray[3].equals("Candy")) {
-					Candy newCandy = new Candy(productArray[0],productArray[1],
-							Double.parseDouble(productArray[2]),productArray[3], 5);
-					initVendingMachine.add(newCandy);
-					
-				}
-				if (productArray[3].equals("Drink")) {
-					Drinks newDrinks = new Drinks(productArray[0],productArray[1],
-							Double.parseDouble(productArray[2]),productArray[3], 5);
-					initVendingMachine.add(newDrinks);
-					
-				}
-				if (productArray[3].equals("Gum")) {
-					Gum newGum = new Gum(productArray[0],productArray[1],
-							Double.parseDouble(productArray[2]),productArray[3], 5);
-					initVendingMachine.add(newGum);
-				}
+				Product newProduct = new Product(productArray[0],productArray[1],
+						Double.parseDouble(productArray[2]),productArray[3], 5);
+				initVendingMachine.add(newProduct);
+				
+//				if (productArray[3].equals("Chip")) {
+//					Chips newChips = new Chips(productArray[0],productArray[1],
+//							Double.parseDouble(productArray[2]),productArray[3], 5);
+//					initVendingMachine.add(newChips);
+//					
+//				}
+//				if (productArray[3].equals("Candy")) {
+//					Candy newCandy = new Candy(productArray[0],productArray[1],
+//							Double.parseDouble(productArray[2]),productArray[3], 5);
+//					initVendingMachine.add(newCandy);
+//					
+//				}
+//				if (productArray[3].equals("Drink")) {
+//					Drinks newDrinks = new Drinks(productArray[0],productArray[1],
+//							Double.parseDouble(productArray[2]),productArray[3], 5);
+//					initVendingMachine.add(newDrinks);
+//					
+//				}
+//				if (productArray[3].equals("Gum")) {
+//					ChewingGum newGum = new ChewingGum(productArray[0],productArray[1],
+//							Double.parseDouble(productArray[2]),productArray[3], 5);
+//					initVendingMachine.add(newGum);
+//				}
 				
 			}
 			return initVendingMachine;
