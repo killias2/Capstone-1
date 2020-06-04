@@ -102,7 +102,7 @@ public class SalesReporter {
 	private String formatMoney(int i) {
 		int dollarAmt = i/ 100;
 		int centsAmt = i % 100;
-		if(centsAmt % 10 == 0)
+		if(centsAmt == 0)
 		{
 			return "$" + dollarAmt + "." + centsAmt + "0";
 		}
