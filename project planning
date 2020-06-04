@@ -1,0 +1,61 @@
+Objects:
+Menu/Interface
+Products
+- Chip/candy/drink/gum extend product
+(customer maybe)
+Log
+File Reader
+Actions:
+Menu/Interface
+- While loop that prompts the user
+- money variable
+- transaction method (separate while loop for "2")
+    - buy a product and print what the product says
+    - add to sales report 
+- givechange method 
+
+Products
+- return string to be printed 
+- slot location
+- name
+- price 
+- subclass
+- basic getters 
+- amount left 
+fileLogger abstract 
+- salesReport and log extends fileLogger
+- log 
+    - different method for each transaction type 
+- Takes input and writes to file 
+FileReader abstract
+- dataReader and salesReportReader extends FileReader
+- takes in data and parses it to the correct format
+Vending Machine
+- holds a list of products and their amount 
+
+Division: 
+Griff - Menu
+Shane - I/O 
+Wes - Products and Vending Machines 
+
+Menu - 
+while loop 
+- add in option 5 to exit
+Vending Machine 
+- boolean isInStock(int productLocation) given a product number see if there is still stock 
+- Product purchase(int productLocation) returns product that was purchased 
+Product 
+- getItemName
+- getItemCost
+- location 
+- message() returns custom message for productType 
+I/O 
+- read an input file and generate a vending machine object and pass it to interface 
+- log 
+    - printFeedMoney(int moneyPaid, int balance)
+    - printBuyProduct(Product, int balance)
+    - printGiveChange(int balance)
+- salesReport 
+    - salesReport.open() //initilization 
+    - addToSalesReport(Product p) keep doing this until vending machine close
+    - salesReport.update() //close the salesReport
