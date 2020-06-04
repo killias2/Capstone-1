@@ -8,9 +8,11 @@ import java.util.Scanner;
 
 public class Logger {
 	
+	File log = new File("Logger.txt");
+	
 	public void logClear() {
-		File log = new File("Logger.txt");
 		try {
+			log.delete();
 			log.createNewFile();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -18,12 +20,17 @@ public class Logger {
 	}
 	
 	public void logFeed(String moneyFed, String balance) {
-		File log = new File("Logger.txt");
-		
 		try (Scanner reader = new Scanner(log); PrintWriter logger = new PrintWriter(log)){
-			while (reader.hasNext()) {
+//			List<String> logList = new ArrayList<String>();
+			
+			while (reader.hasNextLine()) {
+				String line = reader.nextLine();
+//				logList.add(line);
+				logger.println(line);
 			}
-			logger.println(java.time.LocalDate.now() + " " + java.time.LocalTime.now() + " FEED MONEY: " + moneyFed + " " + balance);
+			logger.println(java.time.LocalDate.now() + " " + java.time.LocalTime.now()
+			+ " FEED MONEY: " + moneyFed + " " + balance);
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -54,12 +61,3 @@ public class Logger {
 //	}
 
 }
-
-
-
-//if (!log.exists()){
-//	try {
-//		log.createNewFile();
-//	} catch (FileNotFoundException e) {
-//		e.printStackTrace();
-//	}
