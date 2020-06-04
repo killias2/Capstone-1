@@ -15,6 +15,7 @@ public class FileReader {
 				String line = reader.nextLine();
 				String[] productArray = line.split("\\|");
 				Product newProduct = new Product(productArray[0],productArray[1],Double.parseDouble(productArray[2]),productArray[3]);
+//				Product newProduct = new Product(productArray[0],productArray[1],Double.parseDouble(productArray[2]),productArray[3],5);
 				initVendingMachine.add(newProduct);
 			}
 			return initVendingMachine;
@@ -23,5 +24,7 @@ public class FileReader {
 			return null;
 		}
 	}
+	
+	
 
 }
