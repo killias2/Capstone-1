@@ -20,6 +20,10 @@ public class VendingMachine {
 		return inventory.get(location);
 	}
 	
+	public int getSize() {
+		return inventory.size();
+	}
+	
 	
 
 }
