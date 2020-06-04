@@ -74,6 +74,12 @@ public class VendingInterface {
 		}
 		else if(numUserInput == 3) {
 			menuNum = 0;
+			if(balance > 0)
+			{
+				int[] change = makeChange();
+				System.out.println("You have been given " + change[0] + " quarters, " + change[1] + " dimes, and " + change[2] + " nickels.");
+				System.out.println("Current Balance: " + formatMoney(balance));
+			}
 		}
 		
 	}
@@ -85,9 +91,6 @@ public class VendingInterface {
 		int numUserInput = Integer.parseInt(input);
 		if(numUserInput == 0) {
 			menuNum = 1;
-			int[] change = makeChange();
-			System.out.println("You have been given " + change[0] + " quarters, " + change[1] + " dimes, and " + change[2] + " nickels.");
-			System.out.println("Current Balance: " + formatMoney(balance));
 		}
 		else if(numUserInput == 1 || numUserInput == 2 || numUserInput == 5 || numUserInput == 10) {
 			balance += numUserInput * 100;
@@ -134,6 +137,10 @@ public class VendingInterface {
 	private String formatMoney(int i) {
 	int dollarAmt = i/ 100;
 	int centsAmt = i % 100;
+	if(centsAmt % 10 == 0)
+	{
+		return "$" + dollarAmt + "." + centsAmt + "0";
+	}
 	return "$" + dollarAmt + "." + centsAmt;
 	}
 
