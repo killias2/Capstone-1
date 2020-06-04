@@ -6,14 +6,15 @@ public class VendingInterface {
 	private int menuNum = 0;
 	private Scanner userInput;
 	private VendingMachine machine;
-	//private Logger purchaseLog;
+	private Logger purchaseLog;
 	int balance = 0; //kept in cents
 	private boolean keepVending = true;
 	public VendingInterface() {
 		// TODO Auto-generated method stub
 		FileReader machineReader = new FileReader();
 		machine = machineReader.fillInventory();
-		//purchaseLog = new Logger();
+		purchaseLog = new Logger();
+		purchaseLog.logClear();
 		userInput = new Scanner(System.in);
 	}
 	public void vend() {
@@ -72,13 +73,13 @@ public class VendingInterface {
 			menuNum = 2;
 		}
 		else if(numUserInput == 3) {
-			stopVending();
+			menuNum = 0;
 		}
 		
 	}
 	private void feedMoneyMenu() {
 		System.out.println("Current Balance: " + formatMoney(balance));
-		System.out.println("Please input bills to add more money (1, 2, 5, 10 are valid input types");
+		System.out.println("Please input bills to add more money (1, 2, 5, 10 are valid input types)");
 		System.out.println("Enter -1 to return to previous menu after bills have been added");
 		String input = userInput.nextLine();
 		int numUserInput = Integer.parseInt(input);
@@ -87,7 +88,7 @@ public class VendingInterface {
 		}
 		else if(numUserInput == 1 || numUserInput == 2 || numUserInput == 5 || numUserInput == 10) {
 			balance += numUserInput * 100;
-			
+			purchaseLog.logFeed(formatMoney(numUserInput * 100), formatMoney(balance));
 			
 		}
 	
