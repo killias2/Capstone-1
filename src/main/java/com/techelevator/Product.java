@@ -6,6 +6,16 @@ public class Product {
 	private String name;
 	private double price;
 	private String type;
+	private int count;
+	
+	
+	public Product(String location, String name, double price, String type, int count) {
+		this.location = location;
+		this.name = name;
+		this.price = price;
+		this.type = type;
+		this.count = count;
+	}
 	
 	public String getLocation() {
 		return location;
@@ -19,13 +29,18 @@ public class Product {
 	public String getType() {
 		return type;
 	}
-	
-	public Product(String location, String name, double price, String type) {
-		this.location = location;
-		this.name = name;
-		this.price = price;
-		this.type = type;
+	public int getCount() {
+		return count;
 	}
+	public void setCount(int count) {
+		this.count = count;
+		
+	}
+	public String toString() {
+		
+		
+	}
+	
 	
 
 }
