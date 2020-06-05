@@ -28,6 +28,7 @@ public class VendingInterface {
 	private void stopVending() {
 		keepVending = false;
 		salesReport.updateReport(machine);
+		System.out.println("Vending program terminated.");
 	}
 	private void showMenu(int i) {
 		if(i == 0) {

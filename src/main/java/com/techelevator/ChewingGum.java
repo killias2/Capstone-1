@@ -7,7 +7,7 @@ public class ChewingGum extends Product {
 		super(location, name, price, type, count);
 		
 	}
-	public String printSound() {
+	public String makeSound() {
 		 return "Chew Chew, Yum!";
 		
 	}
