@@ -135,13 +135,13 @@ public class VendingInterface {
 	
 	}
 	private String formatMoney(int i) {
-	int dollarAmt = i/ 100;
-	int centsAmt = i % 100;
-	if(centsAmt % 10 == 0)
-	{
-		return "$" + dollarAmt + "." + centsAmt + "0";
-	}
-	return "$" + dollarAmt + "." + centsAmt;
+		int dollarAmt = i/ 100;
+		int centsAmt = i % 100;
+		if(centsAmt == 0)
+		{
+			return "$" + dollarAmt + "." + centsAmt + "0";
+		}
+		return "$" + dollarAmt + "." + centsAmt;
 	}
 
 }

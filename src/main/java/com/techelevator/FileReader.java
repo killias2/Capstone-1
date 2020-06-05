@@ -17,7 +17,7 @@ public class FileReader {
 				String[] productArray = line.split("\\|");
 				
 				Product newProduct = new Product(productArray[0],productArray[1],
-						Double.parseDouble(productArray[2]),productArray[3], 5);
+						(int)(Double.parseDouble(productArray[2]) * 100),productArray[3], 5);
 				initVendingMachine.add(newProduct);
 				
 //				if (productArray[3].equals("Chip")) {

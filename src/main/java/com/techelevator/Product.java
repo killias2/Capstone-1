@@ -4,12 +4,12 @@ public class Product {
 	
 	private String location;
 	private String name;
-	private double price;
+	private int price;
 	private String type;
 	private int count;
 	
 	
-	public Product(String location, String name, double price, String type, int count) {
+	public Product(String location, String name, int price, String type, int count) {
 		this.location = location;
 		this.name = name;
 		this.price = price;
@@ -37,8 +37,19 @@ public class Product {
 		
 	}
 	public String toString() {
-		
-		return null;
+		if(this.count == 0) {
+			return this.location + ") " + this.name + " SOLD OUT";
+		}
+		return this.location + ") " + this.name + " | PRICE: " + formatMoney(price)  + " | QTY: " + this.count;
+	}
+	private String formatMoney(int i) {
+		int dollarAmt = i/ 100;
+		int centsAmt = i % 100;
+		if(centsAmt == 0)
+		{
+			return "$" + dollarAmt + "." + centsAmt + "0";
+		}
+		return "$" + dollarAmt + "." + centsAmt;
 	}
 	
 	
