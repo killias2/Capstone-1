@@ -1,5 +1,5 @@
-U-Chews|6
-Wonka Bar|1
-Triplemint|5
+Triplemint|2
+Chiclets|1
+Heavy|1
 
-$76.55
+$3.75

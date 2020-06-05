@@ -15,7 +15,8 @@ public class SalesReporterTest {
 	
 	@Test
 	public void test_sales_report_generator() {
-		testReporter.generateReport();
+		VendingMachine testMachine = testReader.fillInventory();
+		testReporter.generateReport(testMachine);
 	}
 
 }

@@ -61,8 +61,7 @@ public class VendingInterface {
 			stopVending();
 		}
 		else if(input.equals("4")){
-			salesReport.updateReport(machine);;
-			salesReport.generateReport();
+			salesReport.generateReport(machine);
 			System.out.println("Sales report generated!");		
 		}
 		else {
