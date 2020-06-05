@@ -163,6 +163,9 @@ public class VendingInterface {
 		{
 			return "$" + dollarAmt + "." + centsAmt + "0";
 		}
+		else if(centsAmt < 10) {
+			return "$" + dollarAmt + "." + "0" + centsAmt;
+		}
 		return "$" + dollarAmt + "." + centsAmt;
 	}
 
