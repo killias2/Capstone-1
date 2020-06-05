@@ -47,8 +47,10 @@ public class VendingInterface {
 		String input = userInput.nextLine();
 		int numUserInput = Integer.parseInt(input);
 		if(numUserInput == 1) {
-			// machine.displayInventory
-			System.out.println("filler inventory display");
+			List<Product> productList = machine.getInventory();
+			for(Product p: productList) {
+				System.out.println(p.toString());
+			}
 		}
 		else if(numUserInput == 2) {
 			menuNum = 1;
@@ -65,8 +67,6 @@ public class VendingInterface {
 		String input = userInput.nextLine();
 		int numUserInput = Integer.parseInt(input);
 		if(numUserInput == 1) {
-			// machine.displayInventory
-			System.out.println("feedMoney");
 			menuNum = 3;
 		}
 		else if(numUserInput == 2) {
@@ -107,17 +107,31 @@ public class VendingInterface {
 		for(Product p: productList) {
 			System.out.println(p.toString());
 		}
-		System.out.println("Enter a number of a product to buy!");
+		System.out.println("Enter a number of a product to buy or 0 to go back!");
 		String input = userInput.nextLine();
-		int numUserInput = Integer.parseInt(input);
-		/*if (machine.productExists(numUserInput))
+		if(input.equals("0")){
+			menuNum = 1;
+		}
+		else if (machine.productExists(input))
 		{
-			
+			if(machine.getProduct(input).getCount() > 0) {
+				if(machine.getProduct(input).getPrice() <= balance) {
+					 dispense(machine.buy(input));
+					
+				}
+				else {
+					System.out.println("Not enough money!");
+				}
+			}
+			else {
+				System.out.println("Product is sold out!");
+			}
 		}
 		else {
+			System.out.println("Product with specified location doesn't exist!");
 			
 		}
-		if ()*/
+		menuNum = 1;
 		//implement later once vending machine class works
 		
 	}
@@ -134,6 +148,14 @@ public class VendingInterface {
 		
 	
 	}
+	private void dispense(Product p) {
+		int oldBalance = balance;
+		balance -= p.getPrice();
+		purchaseLog.logPurchase(p, formatMoney(oldBalance), formatMoney(balance));
+		System.out.println("You have purchased a " + p.getName() + " for " + formatMoney(p.getPrice()) + ". Your remaining balance is: " + formatMoney(balance));
+		System.out.println(p.makeSound());
+	}
+	
 	private String formatMoney(int i) {
 		int dollarAmt = i/ 100;
 		int centsAmt = i % 100;

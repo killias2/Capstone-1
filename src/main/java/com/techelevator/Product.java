@@ -23,7 +23,7 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 	public String getType() {
@@ -31,6 +31,9 @@ public class Product {
 	}
 	public int getCount() {
 		return count;
+	}
+	public void buy() {
+		count --;
 	}
 	public void setCount(int count) {
 		this.count = count;
@@ -52,6 +55,9 @@ public class Product {
 		return "$" + dollarAmt + "." + centsAmt;
 	}
 	
+	public String makeSound() {
+		return "";
+	}
 	
 
 }
