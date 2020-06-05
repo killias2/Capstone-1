@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class SalesReporter {
+	File report = new File("SalesReport.txt");
 	
 	public void updateReport(VendingMachine reportMachine) {
-		File report = new File("SalesReport.txt");
 		File updatedReport = new File("SalesReportTemp.txt");
 		
 		try {
@@ -24,16 +24,17 @@ public class SalesReporter {
 		}
 		
 		int totalSales = 0;
+		int oldSalesInt = 0;
 		Map<String,Integer> reportUpdates = new HashMap<String,Integer>();
 		
 		for (int i = 0; i < reportMachine.getSize(); i++) {
 			if (reportMachine.getProduct(i).getCount() < 5) {
 				reportUpdates.put( reportMachine.getProduct(i).getName(),( 5 - reportMachine.getProduct(i).getCount() ) );
-				totalSales += (reportMachine.getProduct(i).getPrice() * (5 - reportMachine.getProduct(i).getCount() )) * 100;
+				totalSales += (reportMachine.getProduct(i).getPrice() * (5 - reportMachine.getProduct(i).getCount() ));
 			}
 		}
 		
-		boolean checkTotalSales = false;
+		boolean moveSales = false;
 		
 		try (Scanner reportReader = new Scanner(report);
 				PrintWriter reportWriter = new PrintWriter(updatedReport)){
@@ -47,16 +48,17 @@ public class SalesReporter {
 					arrayLine[1] = String.valueOf(newCount);
 					line = String.join("|", arrayLine);
 					reportUpdates.remove(arrayLine[0]);
+					reportWriter.println(line);
 				}
 				
 				if (line.contains("$")) {
 					double oldSales = Double.parseDouble(line.substring(1));
-					int oldSalesInt = (int)(oldSales * 100);
-					line = formatMoney(totalSales + oldSalesInt);
-					checkTotalSales = true;
+					oldSalesInt = (int)(oldSales * 100);
+					line = formatMoney(totalSales + (oldSalesInt));
+					if (reportUpdates.isEmpty()) {
+						reportWriter.println(line);
+					}
 				}
-				
-				reportWriter.println(line);
 				
 			}
 		} catch (FileNotFoundException e) {
@@ -72,13 +74,13 @@ public class SalesReporter {
 				reportWriter.println(line);
 			}
 			
-			updatedReport.delete();
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		} finally {
+			updatedReport.delete();
 		}
 		
-		if(!reportUpdates.isEmpty() || checkTotalSales == false) {
+		if(!reportUpdates.isEmpty()) {
 			
 			try (PrintWriter reportWriter = new PrintWriter(new FileWriter(report,true))){
 				
@@ -86,8 +88,9 @@ public class SalesReporter {
 					reportWriter.println(item.getKey() + "|" + item.getValue());
 				}
 				
-				if (checkTotalSales == false) {
-				reportWriter.println(formatMoney(totalSales));
+				if (moveSales == false) {
+					reportWriter.println();
+					reportWriter.println(formatMoney(totalSales + oldSalesInt));
 				}
 				
 			} catch (IOException e) {
@@ -108,5 +111,21 @@ public class SalesReporter {
 		}
 		return "$" + dollarAmt + "." + centsAmt;
 		}
+	
+	public void generateReport() {
+		String generatedPath = java.time.LocalDate.now() + "_" + java.time.LocalTime.now()  + "_SalesReport.txt";
+		File generatedReport = new File(generatedPath);
+		
+		try (Scanner reportReader = new Scanner(report);
+				PrintWriter reportWriter = new PrintWriter(generatedReport)){
+			while(reportReader.hasNextLine()) {
+				String line = reportReader.nextLine();
+				reportWriter.println(line);
+			}
+		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

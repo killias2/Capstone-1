@@ -40,7 +40,7 @@ public class Logger {
 		try (PrintWriter logger = new PrintWriter(new FileWriter(log,true))){
 			
 			logger.println(java.time.LocalDate.now() + " " + java.time.LocalTime.now() + 
-					" " + name.getName() + " " + name.getLocation() + oldBalance + " " + newBalance);
+					" " + name.getName() + " " + name.getLocation() + " " + oldBalance + " " + newBalance);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
