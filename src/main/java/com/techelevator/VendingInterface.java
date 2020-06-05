@@ -143,8 +143,6 @@ public class VendingInterface {
 			
 		}
 		menuNum = 1;
-		//implement later once vending machine class works
-		
 	}
 	private int[] makeChange() { //return format is [quarters, dimes, nickels]
 		int[] rtn = new int[3];
