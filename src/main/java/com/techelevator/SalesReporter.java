@@ -13,7 +13,6 @@ public class SalesReporter {
 	File report = new File("SalesReport.txt");
 	 int totalSales = 0;
 	 int oldSalesInt = 0;
-	 boolean moveSales = false;
 	
 	private Map<String,Integer> generateMap(VendingMachine reportMachine) {
 		Map<String,Integer> reportUpdates = new HashMap<String,Integer>();
@@ -88,10 +87,8 @@ public class SalesReporter {
 					reportWriter.println(item.getKey() + "|" + item.getValue());
 				}
 				
-				if (moveSales == false) {
-					reportWriter.println();
-					reportWriter.println(formatMoney(totalSales + oldSalesInt));
-				}
+				reportWriter.println();
+				reportWriter.println(formatMoney(totalSales + oldSalesInt));
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -143,11 +140,9 @@ public class SalesReporter {
 				for(Map.Entry<String, Integer> item : reportUpdates.entrySet()) {
 					reportWriter.println(item.getKey() + "|" + item.getValue());
 				}
-				
-				if (moveSales == false) {
-					reportWriter.println();
-					reportWriter.println(formatMoney(totalSales + oldSalesInt));
-				}
+			
+				reportWriter.println();
+				reportWriter.println(formatMoney(totalSales + oldSalesInt));
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -155,7 +150,6 @@ public class SalesReporter {
 		}
 		totalSales = 0;
 		oldSalesInt = 0;
-		moveSales = false;
 		
 	}
 
