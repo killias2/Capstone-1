@@ -1,6 +1,5 @@
 U-Chews|1
 Little League Chew|1
-Triplemint|3
-Chiclets|1
+Triplemint|1
 
-$4.80
+$2.55
