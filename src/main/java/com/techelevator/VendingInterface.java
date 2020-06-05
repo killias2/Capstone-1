@@ -10,10 +10,12 @@ public class VendingInterface {
 	private Logger purchaseLog;
 	int balance = 0; //kept in cents
 	private boolean keepVending = true;
+	SalesReporter salesReport;
 	public VendingInterface() {
 		// TODO Auto-generated method stub
 		FileReader machineReader = new FileReader();
 		machine = machineReader.fillInventory();
+		salesReport = new SalesReporter();
 		purchaseLog = new Logger();
 		purchaseLog.logClear();
 		userInput = new Scanner(System.in);
@@ -25,6 +27,7 @@ public class VendingInterface {
 	}
 	private void stopVending() {
 		keepVending = false;
+		salesReport.updateReport(machine);
 	}
 	private void showMenu(int i) {
 		if(i == 0) {
@@ -45,34 +48,39 @@ public class VendingInterface {
 		System.out.println("(2) Purchase");
 		System.out.println("(3) Exit");
 		String input = userInput.nextLine();
-		int numUserInput = Integer.parseInt(input);
-		if(numUserInput == 1) {
+		if(input.equals("1")) {
 			List<Product> productList = machine.getInventory();
 			for(Product p: productList) {
 				System.out.println(p.toString());
 			}
 		}
-		else if(numUserInput == 2) {
+		else if(input.equals("2")) {
 			menuNum = 1;
 		}
-		else if(numUserInput == 3) {
+		else if(input.equals("3")) {
 			stopVending();
 		}
-		
+		else if(input.equals("4")){
+			salesReport.updateReport(machine);;
+			salesReport.generateReport();
+			System.out.println("Sales report generated!");		
+		}
+		else {
+			System.out.println("Invalid input please try again!");
+		}
 	}
 	private void purchaseMenu() {
 		System.out.println("(1) Feed Money");
 		System.out.println("(2) Select Product");
 		System.out.println("(3) Finish Transaction");
 		String input = userInput.nextLine();
-		int numUserInput = Integer.parseInt(input);
-		if(numUserInput == 1) {
+		if(input.equals("1")) {
 			menuNum = 3;
 		}
-		else if(numUserInput == 2) {
+		else if(input.equals("2")) {
 			menuNum = 2;
 		}
-		else if(numUserInput == 3) {
+		else if(input.equals("3")) {
 			menuNum = 0;
 			if(balance > 0)
 			{
@@ -80,6 +88,9 @@ public class VendingInterface {
 				System.out.println("You have been given " + change[0] + " quarters, " + change[1] + " dimes, and " + change[2] + " nickels.");
 				System.out.println("Current Balance: " + formatMoney(balance));
 			}
+		}
+		else{
+			System.out.println("Invalid input please try again!");
 		}
 		
 	}
@@ -109,6 +120,7 @@ public class VendingInterface {
 		}
 		System.out.println("Enter a number of a product to buy or 0 to go back!");
 		String input = userInput.nextLine();
+		input = input.toUpperCase();
 		if(input.equals("0")){
 			menuNum = 1;
 		}
