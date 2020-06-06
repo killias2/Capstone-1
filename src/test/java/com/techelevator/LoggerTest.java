@@ -89,6 +89,15 @@ public class LoggerTest {
 	
 	@Test
 	public void stream_of_transactions_logged_correctly() {
+		String month = String.valueOf(java.time.LocalDate.now().getMonthValue());
+		if (java.time.LocalDate.now().getMonthValue() < 10) {
+			month = "0" + month;
+		}
+		String day = String.valueOf(java.time.LocalDate.now().getDayOfMonth());
+		if (java.time.LocalDate.now().getDayOfMonth() < 10) {
+			day = "0" + day;
+		}
+		String date = month + "/" + day + "/" + java.time.LocalDate.now().getYear();
 		String moneyFed1 = "$10.00";
 		String balance1 = "$10.00";
 		testLogger.logFeed(moneyFed1, balance1);
@@ -114,6 +123,7 @@ public class LoggerTest {
 				String[] lineArray = line.split(" ");
 				lineArrayList.add(lineArray);
 			}
+			Assert.assertTrue(lineArrayList.get(0)[0].equals(date));
 			Assert.assertTrue(lineArrayList.get(0)[5].equals("$10.00"));
 			Assert.assertTrue(lineArrayList.get(0)[6].equals("$10.00"));
 			Assert.assertTrue(lineArrayList.get(1)[5].equals("$5.00"));
