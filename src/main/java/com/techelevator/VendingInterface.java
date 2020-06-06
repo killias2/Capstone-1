@@ -11,15 +11,23 @@ public class VendingInterface {
 	int balance = 0; //kept in cents
 	private boolean keepVending = true;
 	SalesReporter salesReport;
+	
 	public VendingInterface() {
 		// TODO Auto-generated method stub
 		FileReader machineReader = new FileReader();
-		machine = machineReader.fillInventory();
+		machine = machineReader.fillInventory("vendingmachine.csv");
+		if (machine.getSize() == 0) {
+			System.out.println("This file is not suitable for building an inventory.");
+			System.out.println("Please find and load an appropriate file.");
+			System.exit(1);
+		}
 		salesReport = new SalesReporter();
 		purchaseLog = new Logger();
 		purchaseLog.logClear();
 		userInput = new Scanner(System.in);
 	}
+	
+	
 	public void vend() {
 		while(keepVending) {
 			showMenu(menuNum);

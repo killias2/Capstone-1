@@ -14,7 +14,8 @@ public class SalesReporterTest {
 	
 	SalesReporter testReporter = new SalesReporter();
 	FileReader testReader = new FileReader();
-	VendingMachine testMachine = testReader.fillInventory();
+	String initialInventoryPath = "vendingmachine.csv";
+	VendingMachine testMachine = testReader.fillInventory(initialInventoryPath);
 	File report = new File("SalesReport.txt");
 	
 	public void backupHelper1(Queue<String> origReport) {
