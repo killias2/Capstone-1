@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class SalesReporter {
 	File report = new File("SalesReport.txt");
-	 int totalSales = 0;
-	 int oldSalesInt = 0;
+	int totalSales = 0;
+	int oldSalesInt = 0;
 	
 	private Map<String,Integer> generateMap(VendingMachine reportMachine) {
 		Map<String,Integer> reportUpdates = new HashMap<String,Integer>();
@@ -89,7 +89,7 @@ public class SalesReporter {
 				
 				reportWriter.println();
 				reportWriter.println(formatMoney(totalSales + oldSalesInt));
-				
+				totalSales = 0;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -126,7 +126,14 @@ public class SalesReporter {
 		return "$" + dollarAmt + "." + centsAmt;
 	}
 	
-	public void generateReport(VendingMachine reportMachine) {
+	public String generateReport(VendingMachine reportMachine) {
+		try {
+			if (!report.exists()) {
+				report.createNewFile();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String generatedPath = java.time.LocalDate.now() + "_" + java.time.LocalTime.now()  + "_SalesReport.txt";
 		File generatedReport = new File(generatedPath);
 		Map<String,Integer> reportUpdates = generateMap(reportMachine);
@@ -150,6 +157,7 @@ public class SalesReporter {
 		}
 		totalSales = 0;
 		oldSalesInt = 0;
+		return generatedPath;
 		
 	}
 

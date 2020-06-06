@@ -48,8 +48,8 @@ public class LoggerTest {
 		try (Scanner logReader = new Scanner(log)){
 			String line = logReader.nextLine();
 			String[] lineArray = line.split(" ");
-			Assert.assertTrue(lineArray[4].equals(moneyFed));
-			Assert.assertTrue(lineArray[5].equals(balance));
+			Assert.assertTrue(lineArray[5].equals(moneyFed));
+			Assert.assertTrue(lineArray[6].equals(balance));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -64,10 +64,10 @@ public class LoggerTest {
 		try (Scanner logReader = new Scanner(log)){
 			String line = logReader.nextLine();
 			String[] lineArray = line.split(" ");
-			Assert.assertTrue(lineArray[2].equals("Cowtales"));
-			Assert.assertTrue(lineArray[3].equals("B2"));
-			Assert.assertTrue(lineArray[4].equals(oldBalance));
-			Assert.assertTrue(lineArray[5].equals(newBalance));
+			Assert.assertTrue(lineArray[3].equals("Cowtales"));
+			Assert.assertTrue(lineArray[4].equals("B2"));
+			Assert.assertTrue(lineArray[5].equals(oldBalance));
+			Assert.assertTrue(lineArray[6].equals(newBalance));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -80,8 +80,8 @@ public class LoggerTest {
 		try (Scanner logReader = new Scanner(log)){
 			String line = logReader.nextLine();
 			String[] lineArray = line.split(" ");
-			Assert.assertTrue(lineArray[4].equals(changeGiven));
-			Assert.assertTrue(lineArray[5].equals("$0.00"));
+			Assert.assertTrue(lineArray[5].equals(changeGiven));
+			Assert.assertTrue(lineArray[6].equals("$0.00"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -114,23 +114,23 @@ public class LoggerTest {
 				String[] lineArray = line.split(" ");
 				lineArrayList.add(lineArray);
 			}
-			Assert.assertTrue(lineArrayList.get(0)[4].equals("$10.00"));
 			Assert.assertTrue(lineArrayList.get(0)[5].equals("$10.00"));
-			Assert.assertTrue(lineArrayList.get(1)[4].equals("$5.00"));
-			Assert.assertTrue(lineArrayList.get(1)[5].equals("$15.00"));
-			Assert.assertTrue(lineArrayList.get(2)[4].equals("$15.00"));
-			Assert.assertTrue(lineArrayList.get(2)[5].equals("$13.50"));
-			Assert.assertTrue(lineArrayList.get(2)[2].equals("Cowtales"));
-			Assert.assertTrue(lineArrayList.get(3)[4].equals("$13.50"));
-			Assert.assertTrue(lineArrayList.get(3)[5].equals("$0.00"));
-			Assert.assertTrue(lineArrayList.get(3)[3].equals("CHANGE:"));
-			Assert.assertTrue(lineArrayList.get(4)[4].equals("$2.00"));
+			Assert.assertTrue(lineArrayList.get(0)[6].equals("$10.00"));
+			Assert.assertTrue(lineArrayList.get(1)[5].equals("$5.00"));
+			Assert.assertTrue(lineArrayList.get(1)[6].equals("$15.00"));
+			Assert.assertTrue(lineArrayList.get(2)[5].equals("$15.00"));
+			Assert.assertTrue(lineArrayList.get(2)[6].equals("$13.50"));
+			Assert.assertTrue(lineArrayList.get(2)[3].equals("Cowtales"));
+			Assert.assertTrue(lineArrayList.get(3)[5].equals("$13.50"));
+			Assert.assertTrue(lineArrayList.get(3)[6].equals("$0.00"));
+			Assert.assertTrue(lineArrayList.get(3)[4].equals("CHANGE:"));
 			Assert.assertTrue(lineArrayList.get(4)[5].equals("$2.00"));
-			Assert.assertTrue(lineArrayList.get(5)[4].equals("$2.00"));
-			Assert.assertTrue(lineArrayList.get(5)[5].equals("$0.75"));
-			Assert.assertTrue(lineArrayList.get(5)[2].equals("Cola"));
-			Assert.assertTrue(lineArrayList.get(6)[4].equals("$0.75"));
-			Assert.assertTrue(lineArrayList.get(6)[5].equals("$0.00"));
+			Assert.assertTrue(lineArrayList.get(4)[6].equals("$2.00"));
+			Assert.assertTrue(lineArrayList.get(5)[5].equals("$2.00"));
+			Assert.assertTrue(lineArrayList.get(5)[6].equals("$0.75"));
+			Assert.assertTrue(lineArrayList.get(5)[3].equals("Cola"));
+			Assert.assertTrue(lineArrayList.get(6)[5].equals("$0.75"));
+			Assert.assertTrue(lineArrayList.get(6)[6].equals("$0.00"));
 			
 			
 			
