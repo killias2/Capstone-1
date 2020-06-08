@@ -8,7 +8,7 @@ public class VendingInterface {
 	private Scanner userInput;
 	private VendingMachine machine;
 	private Logger purchaseLog;
-	int balance = 0; //kept in cents
+	private int balance = 0; //kept in cents
 	private boolean keepVending = true;
 	SalesReporter salesReport;
 	
@@ -174,7 +174,7 @@ public class VendingInterface {
 		System.out.println(p.makeSound());
 	}
 	
-	private String formatMoney(int i) {
+	public String formatMoney(int i) {
 		int dollarAmt = i/ 100;
 		int centsAmt = i % 100;
 		if(centsAmt == 0)
